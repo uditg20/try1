@@ -1,0 +1,7 @@
+pyomo
+pandas
+numpy
+streamlit
+plotly
+pydantic
+highspy

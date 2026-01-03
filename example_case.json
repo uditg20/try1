@@ -1,0 +1,55 @@
+{
+  "iso": "ERCOT",
+  "horizon_hours": 24,
+  "bess": {
+    "name": "BESS-1",
+    "capacity_mw": 10.0,
+    "capacity_mwh": 40.0,
+    "pcs_mva": 12.0,
+    "efficiency_round_trip": 0.9,
+    "soc_min_reserve": 0.05,
+    "soc_initial": 0.5
+  },
+  "gen": {
+    "name": "GasGen-1",
+    "num_units": 2,
+    "unit_capacity_mw": 5.0,
+    "min_stable_level_mw": 1.0,
+    "ramp_rate_mw_per_min": 1.0,
+    "start_time_minutes": 10,
+    "heat_rate_mmbtu_per_mwh": 10.0,
+    "fuel_cost_per_mmbtu": 3.0,
+    "start_cost_dollars": 500.0,
+    "om_cost_per_mwh": 5.0
+  },
+  "load": {
+    "name": "DataCenterLoad",
+    "is_critical": true,
+    "base_load_mw": 12.0,
+    "peak_load_mw": 15.0,
+    "volatility": 0.1
+  },
+  "topology": {
+    "poi": {
+      "name": "POI-1",
+      "import_limit_mw": 20.0,
+      "export_limit_mw": 20.0,
+      "import_limit_mva": 22.0,
+      "export_limit_mva": 22.0
+    },
+    "transformers": [
+      {
+        "name": "TX-1",
+        "capacity_mva": 25.0,
+        "high_side_kv": 138.0,
+        "low_side_kv": 13.8
+      }
+    ]
+  },
+  "market_data": {
+    "base_energy_price": 30.0,
+    "peak_energy_price": 80.0,
+    "as_reg_up_price": 10.0,
+    "as_rrs_price": 5.0
+  }
+}
