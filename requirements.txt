@@ -1,0 +1,7 @@
+pyomo>=6.7.0
+highspy>=1.7.0
+pandas>=2.2.0
+numpy>=1.26.0
+streamlit>=1.41.0
+plotly>=5.22.0
+pydantic>=2.8.0
