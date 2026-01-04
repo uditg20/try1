@@ -438,12 +438,27 @@ class DispatchOptimizer:
         # Build model
         m = self.build_model(case)
         
-        # Configure solver
-        try:
-            solver = SolverFactory(self.solver_name)
-        except Exception:
-            # Fallback to standard HiGHS
-            solver = SolverFactory("highs")
+        # Configure solver - try multiple options
+        solver = None
+        solver_options = [self.solver_name, "appsi_highs", "highs", "glpk", "cbc", "cplex", "gurobi"]
+        
+        for solver_name in solver_options:
+            try:
+                solver = SolverFactory(solver_name)
+                if solver is not None and solver.available():
+                    print(f"Using solver: {solver_name}")
+                    break
+                solver = None
+            except Exception:
+                continue
+        
+        if solver is None:
+            raise RuntimeError(
+                "No MILP solver found. Install one of:\n"
+                "  - pip install highspy (may need C++ compiler)\n"
+                "  - conda install -c conda-forge glpk\n"
+                "  - conda install -c conda-forge coincbc"
+            )
         
         # Set solver options
         if hasattr(solver, 'options'):

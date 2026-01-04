@@ -3,7 +3,10 @@
 
 # Optimization
 pyomo>=6.7.0
-highspy>=1.7.0  # HiGHS solver (open-source MILP)
+# Solver options (install ONE of these):
+#   - highspy: pip install highspy (may need C++ compiler on Windows)
+#   - glpk: conda install -c conda-forge glpk
+#   - cbc: conda install -c conda-forge coincbc
 
 # Data handling
 numpy>=1.24.0
