@@ -1,0 +1,159 @@
+{
+  "name": "ERCOT 50MW Data Center",
+  "description": "50MW data center in Houston with BESS and backup generation",
+  
+  "iso": "ERCOT",
+  
+  "time": {
+    "horizon_hours": 24,
+    "interval_minutes": 15,
+    "start_hour": 0
+  },
+  
+  "topology": {
+    "poi": {
+      "name": "Houston_POI",
+      "max_import_mw": 60,
+      "max_export_mw": 20,
+      "mva_rating": 75,
+      "min_power_factor": 0.95,
+      "voltage_kv": 138
+    },
+    "transformers": [
+      {
+        "name": "XFMR_1",
+        "mva_rating": 40,
+        "primary_kv": 138,
+        "secondary_kv": 13.8,
+        "redundancy": "N+1"
+      },
+      {
+        "name": "XFMR_2",
+        "mva_rating": 40,
+        "primary_kv": 138,
+        "secondary_kv": 13.8,
+        "redundancy": "N+1"
+      }
+    ]
+  },
+  
+  "resources": {
+    "bess": {
+      "name": "BESS_1",
+      "power_mw": 25,
+      "energy_mwh": 100,
+      "pcs_mva": 28,
+      "efficiency_charge": 0.94,
+      "efficiency_discharge": 0.94,
+      "soc_min": 0.10,
+      "soc_max": 0.90,
+      "soc_reserve": 0.25,
+      "initial_soc": 0.50,
+      "degradation_cost_per_mwh": 5.0
+    },
+    
+    "generators": {
+      "name": "GenSet_Fleet",
+      "redundancy": "N+1",
+      "units": [
+        {
+          "name": "Gen_1",
+          "capacity_mw": 15,
+          "min_output_mw": 3,
+          "start_time_min": 10,
+          "heat_rate_mmbtu_per_mwh": 8.5,
+          "fuel_cost_per_mmbtu": 3.0,
+          "vom_per_mwh": 5.0,
+          "start_cost": 500
+        },
+        {
+          "name": "Gen_2",
+          "capacity_mw": 15,
+          "min_output_mw": 3,
+          "start_time_min": 10,
+          "heat_rate_mmbtu_per_mwh": 8.5,
+          "fuel_cost_per_mmbtu": 3.0,
+          "vom_per_mwh": 5.0,
+          "start_cost": 500
+        },
+        {
+          "name": "Gen_3",
+          "capacity_mw": 15,
+          "min_output_mw": 3,
+          "start_time_min": 10,
+          "heat_rate_mmbtu_per_mwh": 8.5,
+          "fuel_cost_per_mmbtu": 3.0,
+          "vom_per_mwh": 5.0,
+          "start_cost": 500
+        },
+        {
+          "name": "Gen_4",
+          "capacity_mw": 15,
+          "min_output_mw": 3,
+          "start_time_min": 10,
+          "heat_rate_mmbtu_per_mwh": 8.5,
+          "fuel_cost_per_mmbtu": 3.0,
+          "vom_per_mwh": 5.0,
+          "start_cost": 500
+        }
+      ]
+    },
+    
+    "loads": [
+      {
+        "name": "IT_Critical",
+        "type": "critical",
+        "base_mw": 40,
+        "peak_mw": 45,
+        "power_factor": 0.95
+      },
+      {
+        "name": "Cooling",
+        "type": "curtailable",
+        "base_mw": 12,
+        "peak_mw": 15,
+        "power_factor": 0.90,
+        "curtailable_fraction": 0.20
+      },
+      {
+        "name": "Lighting_BOP",
+        "type": "non_critical",
+        "base_mw": 1,
+        "peak_mw": 1.5,
+        "power_factor": 0.95
+      }
+    ]
+  },
+  
+  "reliability": {
+    "ride_through_minutes": 15,
+    "voll_per_mwh": 50000,
+    "curtailment_cost_per_mwh": 500
+  },
+  
+  "prices": {
+    "source": "synthetic",
+    "description": "Synthetic ERCOT-like price pattern with morning/evening peaks",
+    "base_price": 35,
+    "peak_adder": 100,
+    "peak_hours": [7, 8, 9, 17, 18, 19, 20],
+    "super_peak_adder": 200,
+    "super_peak_hours": [18, 19],
+    "night_discount": 15,
+    "night_hours": [0, 1, 2, 3, 4, 5, 22, 23],
+    
+    "as_prices": {
+      "reg_up_base": 15,
+      "reg_down_base": 8,
+      "spin_base": 10,
+      "peak_multiplier": 1.5
+    }
+  },
+  
+  "optimization": {
+    "solver": "highs",
+    "time_limit_sec": 60,
+    "mip_gap": 0.001,
+    "as_energy_backing_hours": 1.0
+  }
+}
