@@ -61,6 +61,55 @@ cd data-center-energy-platform
 pip install -r requirements.txt
 ```
 
+## 🔌 Planning-Level Electrical Feasibility (pandapower)
+
+This repo includes a **planning / positive-sequence / RMS** feasibility screening model for a data center interconnected through a **single HV/MV transformer**:
+
+**Topology (fixed)**
+- Grid (infinite source / slack bus)
+- HV/MV transformer (e.g., 230 kV → 34.5 kV)
+- Data center MV bus
+  - Aggregated data center load (PQ, configurable PF)
+  - BESS inverter (PQ setpoints; dispatch is rule-based and screened)
+
+**Explicitly out of scope (by design)**
+- EMT / switching transients / sub-cycle dynamics
+- Inverter firmware (PLL, current control), voltage regulation loops
+- Harmonics, flicker
+- Protection coordination
+- Unbalanced / negative-sequence effects
+
+### Run the base power flow
+
+The base case is a 50 MW aggregated data center load at PF≈0.97 (lagging) with BESS at 0 MW / 0 MVAr.
+
+```bash
+python3 examples/base_powerflow.py
+```
+
+Or as a one-liner:
+
+```bash
+python3 -c "from network import BaseSystemSpec, build_base_network, run_powerflow, summarize_base_results; net=build_base_network(BaseSystemSpec()); run_powerflow(net); s=summarize_base_results(net); print(s['bus']); print(s['trafo'][['loading_percent']]); print(s['grid'])"
+```
+
+### Run the hourly feasibility simulation
+
+This runs an hourly loop that updates load (training vs inference assumptions), applies conservative BESS dispatch, runs a power flow each hour, and logs:
+- bus voltages
+- transformer loading
+- grid MW/MVAr import
+
+```bash
+python3 run_simulation.py --arch ac_racks --mode mixed --hours 24 --out feasibility_demo
+```
+
+### PF sensitivity (screening)
+
+```bash
+python3 run_simulation.py --arch dc_800v --mode mixed --hours 24 --pf-sweep 0.94,0.97,0.995 --out pf_sensitivity
+```
+
 ### Run Optimization
 
 ```bash
