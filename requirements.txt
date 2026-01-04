@@ -1,0 +1,18 @@
+# Data Center Energy Platform - Dependencies
+# Production-grade sizing + dispatch tool for data centers
+
+# Optimization
+pyomo>=6.7.0
+highspy>=1.7.0  # HiGHS solver (open-source MILP)
+
+# Data handling
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Visualization & UI
+streamlit>=1.32.0
+plotly>=5.18.0
+
+# Utilities
+pydantic>=2.5.0  # Data validation
+python-dateutil>=2.8.0
