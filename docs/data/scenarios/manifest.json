@@ -1,0 +1,111 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-01-05T00:08:04.725206Z",
+  "scenarios": [
+    {
+      "name": "training_ac_no_bess",
+      "file": "training_ac_no_bess.json",
+      "load_type": "training",
+      "architecture": "ac_traditional",
+      "has_bess": false
+    },
+    {
+      "name": "training_ac_bess_10mw",
+      "file": "training_ac_bess_10mw.json",
+      "load_type": "training",
+      "architecture": "ac_traditional",
+      "has_bess": true
+    },
+    {
+      "name": "training_ac_bess_25mw",
+      "file": "training_ac_bess_25mw.json",
+      "load_type": "training",
+      "architecture": "ac_traditional",
+      "has_bess": true
+    },
+    {
+      "name": "training_dc48v_no_bess",
+      "file": "training_dc48v_no_bess.json",
+      "load_type": "training",
+      "architecture": "dc_48v",
+      "has_bess": false
+    },
+    {
+      "name": "training_dc48v_bess_25mw",
+      "file": "training_dc48v_bess_25mw.json",
+      "load_type": "training",
+      "architecture": "dc_48v",
+      "has_bess": true
+    },
+    {
+      "name": "training_dc800v_no_bess",
+      "file": "training_dc800v_no_bess.json",
+      "load_type": "training",
+      "architecture": "dc_800v",
+      "has_bess": false
+    },
+    {
+      "name": "training_dc800v_bess_25mw",
+      "file": "training_dc800v_bess_25mw.json",
+      "load_type": "training",
+      "architecture": "dc_800v",
+      "has_bess": true
+    },
+    {
+      "name": "inference_ac_no_bess",
+      "file": "inference_ac_no_bess.json",
+      "load_type": "inference",
+      "architecture": "ac_traditional",
+      "has_bess": false
+    },
+    {
+      "name": "inference_ac_bess_25mw",
+      "file": "inference_ac_bess_25mw.json",
+      "load_type": "inference",
+      "architecture": "ac_traditional",
+      "has_bess": true
+    },
+    {
+      "name": "inference_dc48v_no_bess",
+      "file": "inference_dc48v_no_bess.json",
+      "load_type": "inference",
+      "architecture": "dc_48v",
+      "has_bess": false
+    },
+    {
+      "name": "inference_dc48v_bess_25mw",
+      "file": "inference_dc48v_bess_25mw.json",
+      "load_type": "inference",
+      "architecture": "dc_48v",
+      "has_bess": true
+    },
+    {
+      "name": "inference_dc800v_no_bess",
+      "file": "inference_dc800v_no_bess.json",
+      "load_type": "inference",
+      "architecture": "dc_800v",
+      "has_bess": false
+    },
+    {
+      "name": "inference_dc800v_bess_25mw",
+      "file": "inference_dc800v_bess_25mw.json",
+      "load_type": "inference",
+      "architecture": "dc_800v",
+      "has_bess": true
+    },
+    {
+      "name": "mixed_ac_bess_25mw",
+      "file": "mixed_ac_bess_25mw.json",
+      "load_type": "mixed",
+      "architecture": "ac_traditional",
+      "has_bess": true
+    },
+    {
+      "name": "mixed_dc800v_bess_25mw",
+      "file": "mixed_dc800v_bess_25mw.json",
+      "load_type": "mixed",
+      "architecture": "dc_800v",
+      "has_bess": true
+    }
+  ]
+}
