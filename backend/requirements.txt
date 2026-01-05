@@ -1,0 +1,12 @@
+# Data Center Power Flow Backend - Dependencies
+# Planning-level positive-sequence power flow simulation
+
+# Core power system simulation
+pandapower>=2.14.0
+
+# Data handling
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Export utilities (JSON is built-in)
+# No additional dependencies needed for JSON export
