@@ -1,0 +1,76 @@
+{
+  "name": "DC_Example_50MW_CFE90",
+  "iso": "GENERIC",
+  "time": {
+    "horizon_hours": 24,
+    "interval_minutes": 60
+  },
+  "topology": {
+    "poi": {
+      "name": "POI",
+      "max_import_mw": 60.0,
+      "max_export_mw": 0.0,
+      "mva_rating": 69.47368421052633,
+      "min_power_factor": 0.95,
+      "voltage_kv": 138.0
+    },
+    "transformers": [
+      {
+        "name": "XFMR_1",
+        "mva_rating": 84.91228070175441,
+        "primary_kv": 138.0,
+        "secondary_kv": 13.8,
+        "redundancy": "N+1"
+      },
+      {
+        "name": "XFMR_2",
+        "mva_rating": 84.91228070175441,
+        "primary_kv": 138.0,
+        "secondary_kv": 13.8,
+        "redundancy": "N+1"
+      }
+    ]
+  },
+  "resources": {
+    "loads": [
+      {
+        "name": "DataCenterLoad",
+        "type": "critical",
+        "base_mw": 50.0,
+        "power_factor": 0.98
+      }
+    ],
+    "bess": {
+      "name": "BESS",
+      "power_mw": 75.0,
+      "energy_mwh": 750.0,
+      "pcs_mva": 86.8421052631579,
+      "efficiency_charge": 0.938083151964686,
+      "efficiency_discharge": 0.938083151964686,
+      "soc_min": 0.1,
+      "soc_max": 0.9,
+      "soc_reserve": 0.0,
+      "initial_soc": 0.5,
+      "degradation_cost_per_mwh": 0.0
+    },
+    "renewables": {
+      "pv": {
+        "ac_mw": 94.5,
+        "profile": "synthetic",
+        "capacity_factor": 0.25
+      },
+      "wind": {
+        "mw": 59.0625,
+        "profile": "synthetic",
+        "capacity_factor": 0.4
+      }
+    }
+  },
+  "planning_targets": {
+    "cfe_target": 0.9
+  },
+  "notes": [
+    "This case JSON is a sizing output. The current dispatch MILP in this repo does not yet co-optimize PV/wind.",
+    "Replace synthetic profiles with site-specific time series for final engineering."
+  ]
+}

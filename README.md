@@ -77,6 +77,32 @@ python runner.py examples/case_ercot_50mw.json --output results.json
 streamlit run src/ui/app.py
 ```
 
+## 🧩 Technical PV/Wind/BESS/Grid Configuration Tool (CFE-driven)
+
+This repo includes a **non-economic** sizing tool that converts:
+- data center load (MW)
+- grid import/export limits
+- voltage / PF requirements
+- **CFE target** (fraction, 0–1)
+
+…into an electrically screened configuration: **PV (AC MW), Wind (MW), BESS (MW/MWh + PCS MVA), POI MVA, transformers**.
+
+### Run (interactive; prompts for CFE)
+
+```bash
+python -m src.sizing.cli --interactive
+```
+
+### Run (JSON input)
+
+```bash
+python -m src.sizing.cli --input examples/sizing_input_template.json --output sizing_output.json --case-output case_sized.json
+```
+
+Notes:
+- The tool uses **synthetic profiles** for screening by default. Replace with site data for final engineering.
+- The output `case_sized.json` follows this repo’s case format and stores PV/wind under `resources.renewables` (the current dispatch MILP does not yet co-optimize PV/wind).
+
 ## 📊 UI Pages
 
 ### 1. System Overview

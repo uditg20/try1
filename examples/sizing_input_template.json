@@ -1,0 +1,39 @@
+{
+  "name": "DC_Example_50MW_CFE90",
+  "cfe_target": 0.9,
+  "load": {
+    "load_mw": 50,
+    "power_factor": 0.98
+  },
+  "grid": {
+    "max_import_mw": 60,
+    "max_export_mw": 0,
+    "poi_voltage_kv": 138,
+    "poi_min_power_factor": 0.95
+  },
+  "transformer": {
+    "secondary_kv": 13.8,
+    "n_transformers": 2,
+    "redundancy": "N+1",
+    "design_loading_pu": 0.9
+  },
+  "profiles": {
+    "horizon_hours": 8760,
+    "timestep_hours": 1,
+    "pv_capacity_factor": 0.25,
+    "wind_capacity_factor": 0.4,
+    "seed": 42
+  },
+  "renewable_mix": {
+    "pv_energy_fraction": 0.5,
+    "wind_energy_fraction": 0.5
+  },
+  "bess": {
+    "allow_grid_charging": false,
+    "roundtrip_efficiency": 0.88,
+    "inverter_min_pf": 0.95,
+    "duration_hours_bounds": [0, 12],
+    "power_fraction_bounds": [0.25, 2.0]
+  }
+}
+

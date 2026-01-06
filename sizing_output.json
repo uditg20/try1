@@ -1,0 +1,171 @@
+{
+  "inputs": {
+    "name": "DC_Example_50MW_CFE90",
+    "cfe_target": 0.9,
+    "load": {
+      "load_mw": 50.0,
+      "power_factor": 0.98
+    },
+    "grid": {
+      "max_import_mw": 60.0,
+      "max_export_mw": 0.0,
+      "poi_voltage_kv": 138.0,
+      "poi_min_power_factor": 0.95,
+      "poi_mva_rating": null
+    },
+    "transformer": {
+      "primary_kv": 138.0,
+      "secondary_kv": 13.8,
+      "n_transformers": 2,
+      "redundancy": "N+1",
+      "per_unit_mva": null,
+      "design_loading_pu": 0.9
+    },
+    "profiles": {
+      "horizon_hours": 8760,
+      "timestep_hours": 1,
+      "pv_capacity_factor": 0.25,
+      "wind_capacity_factor": 0.4,
+      "seed": 42
+    },
+    "renewable_mix": {
+      "pv_energy_fraction": 0.5,
+      "wind_energy_fraction": 0.5
+    },
+    "bess": {
+      "allow_grid_charging": false,
+      "inverter_min_pf": 0.95,
+      "roundtrip_efficiency": 0.88,
+      "soc_min": 0.1,
+      "soc_max": 0.9,
+      "initial_soc": 0.5,
+      "reserve_soc": 0.0,
+      "duration_hours_bounds": [
+        0.0,
+        12.0
+      ],
+      "power_fraction_bounds": [
+        0.25,
+        2.0
+      ]
+    },
+    "allow_unserved_load": false,
+    "design_margin_pu": 1.1
+  },
+  "pv_ac_mw": 94.5,
+  "wind_mw": 59.0625,
+  "bess_power_mw": 75.0,
+  "bess_energy_mwh": 750.0,
+  "bess_pcs_mva": 86.8421052631579,
+  "poi_mva_rating": 69.47368421052633,
+  "transformers": [
+    {
+      "name": "XFMR_1",
+      "mva_rating": 84.91228070175441,
+      "primary_kv": 138.0,
+      "secondary_kv": 13.8,
+      "redundancy": "N+1"
+    },
+    {
+      "name": "XFMR_2",
+      "mva_rating": 84.91228070175441,
+      "primary_kv": 138.0,
+      "secondary_kv": 13.8,
+      "redundancy": "N+1"
+    }
+  ],
+  "case_json": {
+    "name": "DC_Example_50MW_CFE90",
+    "iso": "GENERIC",
+    "time": {
+      "horizon_hours": 24,
+      "interval_minutes": 60
+    },
+    "topology": {
+      "poi": {
+        "name": "POI",
+        "max_import_mw": 60.0,
+        "max_export_mw": 0.0,
+        "mva_rating": 69.47368421052633,
+        "min_power_factor": 0.95,
+        "voltage_kv": 138.0
+      },
+      "transformers": [
+        {
+          "name": "XFMR_1",
+          "mva_rating": 84.91228070175441,
+          "primary_kv": 138.0,
+          "secondary_kv": 13.8,
+          "redundancy": "N+1"
+        },
+        {
+          "name": "XFMR_2",
+          "mva_rating": 84.91228070175441,
+          "primary_kv": 138.0,
+          "secondary_kv": 13.8,
+          "redundancy": "N+1"
+        }
+      ]
+    },
+    "resources": {
+      "loads": [
+        {
+          "name": "DataCenterLoad",
+          "type": "critical",
+          "base_mw": 50.0,
+          "power_factor": 0.98
+        }
+      ],
+      "bess": {
+        "name": "BESS",
+        "power_mw": 75.0,
+        "energy_mwh": 750.0,
+        "pcs_mva": 86.8421052631579,
+        "efficiency_charge": 0.938083151964686,
+        "efficiency_discharge": 0.938083151964686,
+        "soc_min": 0.1,
+        "soc_max": 0.9,
+        "soc_reserve": 0.0,
+        "initial_soc": 0.5,
+        "degradation_cost_per_mwh": 0.0
+      },
+      "renewables": {
+        "pv": {
+          "ac_mw": 94.5,
+          "profile": "synthetic",
+          "capacity_factor": 0.25
+        },
+        "wind": {
+          "mw": 59.0625,
+          "profile": "synthetic",
+          "capacity_factor": 0.4
+        }
+      }
+    },
+    "planning_targets": {
+      "cfe_target": 0.9
+    },
+    "notes": [
+      "This case JSON is a sizing output. The current dispatch MILP in this repo does not yet co-optimize PV/wind.",
+      "Replace synthetic profiles with site-specific time series for final engineering."
+    ]
+  },
+  "report": {
+    "feasible": true,
+    "warnings": [],
+    "violations": [],
+    "max_grid_import_mw": 50.0,
+    "grid_import_limit_mw": 60.0,
+    "max_grid_export_mw": 0.0,
+    "grid_export_limit_mw": 0.0,
+    "required_poi_mva": 69.47368421052633,
+    "required_transformer_mva_total": 69.47368421052633,
+    "firm_transformer_mva": 84.91228070175441,
+    "achieved_cfe": 0.9022957402576554,
+    "annual_load_mwh": 438000.0,
+    "annual_grid_import_mwh": 42794.46576714663,
+    "annual_renewable_used_mwh": 395205.53423285304,
+    "annual_renewable_curtailed_mwh": 5701.751849346656,
+    "annual_bess_throughput_mwh": 206241.05883175507
+  }
+}
